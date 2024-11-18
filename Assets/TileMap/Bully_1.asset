@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Bully_1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 54e41e7332336b34d99a8ffd4c352e1e, type: 3}
+  - {fileID: 21300000, guid: 9a0083db0b11f4d4189572b1267e6d36, type: 3}
+  - {fileID: 21300000, guid: cf09de71755f4244b99e5f81560fdd43, type: 3}
+  - {fileID: 21300000, guid: c7b76a3b6a6789c498a3cf891765fda9, type: 3}
+  - {fileID: 21300000, guid: 4904af76fa4b2d444936a4ea66326a65, type: 3}
+  - {fileID: 21300000, guid: 33c5c890717bba1449b5dd9df499e581, type: 3}
+  - {fileID: 21300000, guid: bf12b9a1c769cad4da122765aa47b93c, type: 3}
+  - {fileID: 21300000, guid: 1ab8c6e7c7a0d6f43b0786b030d64b85, type: 3}
+  - {fileID: 21300000, guid: fb050ce20b776a24b9f49a7e96cbb7a9, type: 3}
+  - {fileID: 21300000, guid: 322de21f5bff7ab4fa9c4e075c93fe1e, type: 3}
+  - {fileID: 21300000, guid: 650af48088519a245becb5e8701215b6, type: 3}
+  - {fileID: 21300000, guid: ec9ca0d1313cd7c42978d65fb352064b, type: 3}
+  - {fileID: 21300000, guid: 5021289a2fba81347a697bf9160764dc, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 1
+  m_TileAnimationFlags: 0
