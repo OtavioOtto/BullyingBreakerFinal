@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c72a58ca842c441a5669d11fa08f45, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  sanduicheQuant: 0
+  paoQuant: 0
   biscoitoQuant: 0
   energeticoQuant: 0
   chocolateQuant: 0
-  paoQuant: 0
+  sanduicheQuant: 0
   melanciaQuant: 0
   sobremesaQuant: 0
   cafeQuant: 0
@@ -24,14 +24,10 @@ MonoBehaviour:
   attackBuff: 0
   healingBuff: 0
   empathyBuff: 0
-  temporaryAttackBuff: 0
+  temporaryAttackBuff: 1
   temporaryDefenseBuff: 0
-  currentAttackItem1: 
-  currentDefenseItem1: 
   currentEquippedBuff1: 
   hp: 1
-  currentAttackItem2: 
-  currentDefenseItem2: 
   currentEquippedBuff2: 
   papel1: 0
   papel2: 0

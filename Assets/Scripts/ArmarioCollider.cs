@@ -34,7 +34,7 @@ public class ArmarioCollider : MonoBehaviour
         if (playerIsInside)
         {
 
-            if (Input.GetButtonDown("VERDE0"))
+            if (Input.GetButtonDown("VERMELHO0"))
             {
                 interactTxt.SetActive(false);
                 uiPapelHandler.SetText(qualPapel);
@@ -59,7 +59,7 @@ public class ArmarioCollider : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("BRANCO0"))
+            if (Input.GetButtonDown("AMARELO0"))
             {
                 this.gameObject.SetActive(false);
                 papelAnimation.closing = true;

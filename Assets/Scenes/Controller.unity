@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Interagir
+  m_text: Interagir UI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
   m_sharedMaterial: {fileID: 8789012767236171501, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: nao utilizado
+  m_text: Interagir Mapa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
   m_sharedMaterial: {fileID: 8789012767236171501, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
@@ -1509,7 +1509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: nao utilizado
+  m_text: Voltar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
   m_sharedMaterial: {fileID: 8789012767236171501, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
@@ -1842,7 +1842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cancelar / Ativar UI
+  m_text: nao utilizado
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}
   m_sharedMaterial: {fileID: 8789012767236171501, guid: 54c47c6a499ccb04d92ffc95f5b3b499, type: 2}

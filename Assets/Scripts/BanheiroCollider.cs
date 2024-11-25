@@ -26,9 +26,10 @@ public class BanheiroCollider : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("BRANCO0") && isPlayerInside && !banheiroUI.activeSelf)
+        if (Input.GetButtonDown("VERDE0") && isPlayerInside && !banheiroUI.activeSelf)
         {
             banheiroUI.SetActive(true);
+            banheiroUITxt.SetActive(false);
             playerController.canMove = false;
             canChangeUIState = false;
             StartCoroutine(ChangeUIStateCooldown());

@@ -128,13 +128,12 @@ public class GameController : MonoBehaviour
     private List<GameObject> turnOrder;
     public int currentTurnIndex;
     private float menu;
-    private float itemDefenseValue1;
-    private float itemDefenseValue2;
-    private float attackBuff;
-    private float empathyBuff;
-    private float healBuff;
+    [SerializeField] private float attackBuff = 1;
+    [SerializeField] private float empathyBuff = 1;
     private bool healBuffUnlocked = false;
     private bool normalBuffUnlocked = false;
+    private float temporaryAttackBuff;
+    private float temporaryDefenseBuff;
     public bool ganhou = false;
     [Header("Player inventory")]
     public InventoryHandler inventory;
@@ -142,16 +141,10 @@ public class GameController : MonoBehaviour
     public AnimateBattles animator;
     void Start()
     {
-        if (inventory.currentDefenseItem1 != "")
-            itemDefenseValue1 = inventory.ReturnDefenseValue("player1");
-        if (inventory.currentDefenseItem2 != "")
-            itemDefenseValue2 = inventory.ReturnDefenseValue("player2");
         if (inventory.currentEquippedBuff1 == "buffAtk" || inventory.currentEquippedBuff2 == "buffAtk")
-            attackBuff = 0.15f;
+            attackBuff = 2f;
         if (inventory.currentEquippedBuff1 == "buffEmpathy" || inventory.currentEquippedBuff2 == "buffEmpathy")
-            empathyBuff = 0.2f;
-        if (inventory.currentEquippedBuff1 == "buffHeal" || inventory.currentEquippedBuff2 == "buffHeal")
-            healBuff = 0.3f;
+            empathyBuff = 2f;
         animator = GetComponent<AnimateBattles>();
         InitializeGame();
         SetEnemy();
@@ -171,6 +164,8 @@ public class GameController : MonoBehaviour
         cafe = inventory.cafeQuant;
         kit = inventory.kitQuant;
         menu = Input.GetAxis("MENU");
+        temporaryAttackBuff = inventory.temporaryAttackBuff;
+        temporaryDefenseBuff = inventory.temporaryDefenseBuff;
         Menu();
         SetButtonTexts();
         ReturnToDefaultButtons();
@@ -248,6 +243,7 @@ public class GameController : MonoBehaviour
     }
     private void ActivateEnemyTurn()
     {
+        
         enemySelection.SetActive(true);
         StartCoroutine(EnemyAttackRoutine());
     }
@@ -262,10 +258,7 @@ public class GameController : MonoBehaviour
     {
         animator.SetAnimations("enemy");
         yield return new WaitForSeconds(1.0f);
-        if (inventory.currentDefenseItem1 != "" || inventory.currentDefenseItem2 != "")
-            playerHealth.value -= playerHealth.maxValue * (enemyAttackValue - (itemDefenseValue1 + itemDefenseValue2));
-        else
-            playerHealth.value -= playerHealth.maxValue * enemyAttackValue;
+        playerHealth.value -= playerHealth.maxValue * (enemyAttackValue) - temporaryDefenseBuff;
         if (playerHealth.value <= 0)
         {
             enemies.CanDestroyEnemy("nao");
@@ -277,6 +270,7 @@ public class GameController : MonoBehaviour
             inventory.hp = playerHealth.value;
             yield return new WaitForSeconds(1.0f);
             NextTurn();
+            inventory.ResetTemporaryBuffs();
         }
     }
     public void EmpathyOptions()
@@ -332,34 +326,16 @@ public class GameController : MonoBehaviour
     }
     private void AdjustEnemyAura(int botao)
     {
-        if (inventory.empathyBuff)
+        if (botao == 1)
         {
-            if (botao == 1)
-            {
-                enemyAura.value -= enemyAura.maxValue * (playerEmpathyValue + empathyBuff);
-            }
-
-            else if (botao == 2)
-            {
-                battlePoints -= 15;
-                enemyAura.value -= enemyAura.maxValue * (playerEmpathyValue * 2.5f + empathyBuff);
-            }
-        }
-        else
-        {
-            if (botao == 1)
-            {
-                enemyAura.value -= enemyAura.maxValue * playerEmpathyValue;
-            }
-
-            else if (botao == 2)
-            {
-                battlePoints -= 15;
-                enemyAura.value -= enemyAura.maxValue * playerEmpathyValue * 2;
-            }
+            enemyAura.value -= enemyAura.maxValue * (playerEmpathyValue * empathyBuff);
         }
 
-
+        else if (botao == 2)
+        {
+            battlePoints -= 15;
+            enemyAura.value -= enemyAura.maxValue * ((playerEmpathyValue * 2.5f) * empathyBuff);
+        }
     }
     public void AttackOptions()
     {
@@ -420,7 +396,7 @@ public class GameController : MonoBehaviour
     }
     private void ReturnToDefaultButtons() {
 
-        if (attackOptions.activeSelf && Input.GetButtonDown("BRANCO0")) {
+        if (attackOptions.activeSelf && Input.GetButtonDown("AMARELO0")) {
 
             attackOptions.SetActive(false);
             defaultOptions.SetActive(true);
@@ -428,7 +404,7 @@ public class GameController : MonoBehaviour
 
         }
 
-        else if (empathyOptions.activeSelf && Input.GetButtonDown("BRANCO0"))
+        else if (empathyOptions.activeSelf && Input.GetButtonDown("AMARELO0"))
         {
 
             empathyOptions.SetActive(false);
@@ -437,7 +413,7 @@ public class GameController : MonoBehaviour
 
         }
 
-        else if (itemOptions.activeSelf && Input.GetButtonDown("BRANCO0"))
+        else if (itemOptions.activeSelf && Input.GetButtonDown("AMARELO0"))
         {
 
             itemOptions.SetActive(false);
@@ -449,31 +425,15 @@ public class GameController : MonoBehaviour
     }
     private void AdjustEnemyHealth(int botao)
     {
-        if (inventory.attackBuff)
+        if (botao == 1)
         {
-            if (botao == 1)
-            {
-                enemyHealth.value -= enemyHealth.maxValue * (playerAttackValue + attackBuff);
-            }
-
-            else if (botao == 2)
-            {
-                battlePoints -= 10;
-                enemyHealth.value -= enemyHealth.maxValue * (playerAttackValue * 2 + attackBuff);
-            }
+            enemyHealth.value -= enemyHealth.maxValue * (playerAttackValue * attackBuff) * temporaryAttackBuff;
         }
-        else
-        {
-            if (botao == 1)
-            {
-                enemyHealth.value -= enemyHealth.maxValue * playerAttackValue;
-            }
 
-            else if (botao == 2)
-            {
-                battlePoints -= 10;
-                enemyHealth.value -= enemyHealth.maxValue * playerAttackValue * 2;
-            }
+        else if (botao == 2)
+        {
+            battlePoints -= 10;
+            enemyHealth.value -= enemyHealth.maxValue * (playerAttackValue * 2 * attackBuff) * temporaryAttackBuff;
         }
     }
     public void ItemOptions()
@@ -549,64 +509,64 @@ public class GameController : MonoBehaviour
     public void ItemButton(int ordem)
     {
         StartCoroutine(AdjustPlayerHealth(ordem));
-        NextTurn();
     }
     private IEnumerator AdjustPlayerHealth(int ordem) {
         animator.SetAnimations("item");
-        yield return new WaitForSeconds(1.0f);
-        if (ordem == 1)
+        yield return new WaitForSeconds(1.6f);
+        if (ordem == 1 && inventory.paoQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.1f + healBuff;
             inventory.HealPlayer("pao");
+            NextTurn();
         }
 
-        else if (ordem == 2)
+        else if (ordem == 2 && inventory.biscoitoQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.15f + healBuff;
             inventory.HealPlayer("biscoito");
+            NextTurn();
         }
 
-        else if (ordem == 3)
+        else if (ordem == 3 && inventory.energeticoQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
             inventory.HealPlayer("energetico");
+            NextTurn();
         }
 
-        else if (ordem == 4)
+        else if (ordem == 4 && inventory.sanduicheQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
             inventory.HealPlayer("sanduiche");
+            NextTurn();
         }
 
-        else if (ordem == 5)
+        else if (ordem == 5 && inventory.chocolateQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
             inventory.HealPlayer("chocolate");
+            NextTurn();
         }
 
-        else if (ordem == 6)
+        else if (ordem == 6 && inventory.melanciaQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
             inventory.HealPlayer("melancia");
+            NextTurn();
         }
 
-        else if (ordem == 7)
+        else if (ordem == 7 && inventory.sobremesaQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
             inventory.HealPlayer("sobremesa");
+            NextTurn();
         }
 
-        else if (ordem == 8)
+        else if (ordem == 8 && inventory.cafeQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
             inventory.HealPlayer("cafe");
+            NextTurn();
         }
 
-        else if (ordem == 9)
+        else if (ordem == 9 && inventory.kitQuant > 0)
         {
-            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
-            inventory.HealPlayer("chocolate");
+            inventory.HealPlayer("kit");
+            NextTurn();
         }
+        
     }
     private void NextTurn()
     {

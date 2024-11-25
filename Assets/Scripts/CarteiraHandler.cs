@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarteiraHandler : MonoBehaviour
 {
-    private readonly string[] itens = {"pao", "biscoito", "energetico", "cholocate", "sanduiche", "melancia" , "sobremesa", "cafe", "kit"};
+    private readonly string[] itens = {"pao", "biscoito", "energetico", "chocolate", "sanduiche", "melancia" , "sobremesa", "cafe", "kit"};
     public string item;
     void Start()
     {

@@ -17,7 +17,7 @@ public class ToiletHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("VERDE0") && playerInside)
+        if (Input.GetButtonDown("VERMELHO0") && playerInside)
         {
             animator.SetBool("flush", true);
         }

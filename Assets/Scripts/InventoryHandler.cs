@@ -6,11 +6,11 @@ using UnityEngine;
 public class InventoryHandler : ScriptableObject
 {
     [Header("Quantidade Itens")]
-    public int sanduicheQuant;
+    public int paoQuant;
     public int biscoitoQuant;
     public int energeticoQuant;
     public int chocolateQuant;
-    public int paoQuant;
+    public int sanduicheQuant;
     public int melanciaQuant;
     public int sobremesaQuant;
     public int cafeQuant;
@@ -26,16 +26,12 @@ public class InventoryHandler : ScriptableObject
     public float temporaryDefenseBuff;
 
     [Header("Itens Equipados Player 1")]
-    public string currentAttackItem1;
-    public string currentDefenseItem1;
     public string currentEquippedBuff1;
 
     [Header("Stats Players")]
     public float hp = 1;
 
     [Header("Itens Equipados Player 2")]
-    public string currentAttackItem2;
-    public string currentDefenseItem2;
     public string currentEquippedBuff2;
 
     [Header("Papeis Encontrados")]
@@ -45,65 +41,9 @@ public class InventoryHandler : ScriptableObject
 
     [Header("Inimigos Recrutados")]
     public RecruitedEnemiesHadler enemies;
-    
-    public float ReturnDamageValue(string qualPlayer) {
-        if (qualPlayer == "player1")
-        {
-            if (currentAttackItem1 != null)
-            {
-                if (currentAttackItem1 == "caderno")
-                    return 2f;
-                else if (currentAttackItem1 == "lapis")
-                    return 3f;
-                else if (currentAttackItem1 == "tesoura")
-                    return 6f;
-            }
-        }
-        else if (qualPlayer == "player2")
-        {
-            if (currentAttackItem2 != null)
-            {
-                if (currentAttackItem2 == "caderno")
-                    return 2f;
-                else if (currentAttackItem2 == "lapis")
-                    return 3f;
-                else if (currentAttackItem2 == "tesoura")
-                    return 6f;
-            }
-        }
-        return 0f;
-    }
-    public float ReturnDefenseValue(string qualPlayer)
-    {
-        if (qualPlayer == "player1")
-        {
-            if (currentDefenseItem1 != null)
-            {
-                if (currentDefenseItem1 == "broche")
-                    return 0.03f;
-                else if (currentDefenseItem1 == "oculos")
-                    return 0.05f;
-                else if (currentDefenseItem1 == "jaqueta")
-                    return 0.09f;
-            }
-        }
-        else if (qualPlayer == "player2")
-        {
-            if (currentDefenseItem2 != null)
-            {
-                if (currentDefenseItem2 == "broche")
-                    return 0.03f;
-                else if (currentDefenseItem2 == "oculos")
-                    return 0.05f;
-                else if (currentDefenseItem2 == "jaqueta")
-                    return 0.09f;
-            }
-        }
-        return 0f;
-    }
     public void GotItem(string name) {
-        if (name == "sanduiche")
-            sanduicheQuant++;
+        if (name == "pao")
+            paoQuant++;
 
         else if (name == "biscoito")
             biscoitoQuant++;
@@ -114,8 +54,8 @@ public class InventoryHandler : ScriptableObject
         else if (name == "chocolate")
             chocolateQuant++;
 
-        else if (name == "pao")
-            paoQuant++;
+        else if (name == "sanduiche")
+            sanduicheQuant++;
 
         else if (name == "melancia")
             melanciaQuant++;
@@ -158,7 +98,7 @@ public class InventoryHandler : ScriptableObject
         else if (item == "sanduiche")
         {
             hp += .40f;
-            temporaryDefenseBuff = 1.5f;
+            temporaryDefenseBuff = .025f;
             sanduicheQuant--;
         }
 
@@ -166,20 +106,20 @@ public class InventoryHandler : ScriptableObject
         {
             hp += .35f;
             melanciaQuant--;
-            temporaryDefenseBuff = 1.8f;
+            temporaryDefenseBuff = 1.5f;
         }
 
         else if (item == "sobremesa")
         {
             hp += .5f;
             sobremesaQuant--;
-            temporaryDefenseBuff = 2f;
+            temporaryDefenseBuff = .05f;
         }
 
         else if (item == "cafe")
         {
             hp += .45f;
-            sobremesaQuant--;
+            cafeQuant--;
             temporaryAttackBuff = 1.7f;
         }
 
@@ -188,6 +128,9 @@ public class InventoryHandler : ScriptableObject
             hp += 1;
             kitQuant--;
         }
+
+        if (healingBuff)
+            hp += 0.2f;
 
         if (hp > 1)
             hp = 1;
@@ -217,7 +160,7 @@ public class InventoryHandler : ScriptableObject
 
         if (qualPlayer == "player2")
         {
-            if (currentAttackItem1 != "")
+            if (currentEquippedBuff2 != "")
             {
                 if (currentEquippedBuff2 == "buffAtk" && currentEquippedBuff2 != newBuff)
                     attackBuff = true;
@@ -253,7 +196,7 @@ public class InventoryHandler : ScriptableObject
     }
     public void ResetTemporaryBuffs() {
 
-        temporaryAttackBuff = 0;
+        temporaryAttackBuff = 1;
         temporaryDefenseBuff = 0;
 
     }

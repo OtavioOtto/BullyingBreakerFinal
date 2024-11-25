@@ -15,7 +15,7 @@ public class PiaCollider : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("VERDE0") && playerInside) {
+        if (Input.GetButtonDown("VERMELHO0") && playerInside) {
 
             animator.SetBool("fill", true);
         

@@ -8,12 +8,7 @@ public class LastBossDoorHandler : MonoBehaviour
 
     void Start()
     {
-        if (enemies.boss3)
+        if (enemies.battle1 && enemies.battle2 && enemies.battle3 && enemies.battle4 && enemies.boss1 && enemies.boss2)
             this.gameObject.SetActive(false);
-    }
-
-    void Update()
-    {
-        
     }
 }

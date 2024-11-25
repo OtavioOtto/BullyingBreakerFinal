@@ -249,11 +249,13 @@ public class UIBanheiroHandler : MonoBehaviour
         if (dadosJimmy.activeSelf == true)
         {
             buffJimmyPencil.SetActive(true);
+            buffJimmySelect.Select();
         }
 
         if (dadosAlice.activeSelf == true)
         {
             buffAlicePencil.SetActive(true);
+            buffAliceSelect.Select();
         }
     }
     private void HealItensScreen()
@@ -266,7 +268,6 @@ public class UIBanheiroHandler : MonoBehaviour
             {
                 item1Select.SetActive(true);
                 item2Select.SetActive(false);
-                item3Select.SetActive(false);
             }
 
             else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item2BTTN)
@@ -278,9 +279,50 @@ public class UIBanheiroHandler : MonoBehaviour
 
             else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item3BTTN)
             {
-                item1Select.SetActive(false);
                 item2Select.SetActive(false);
                 item3Select.SetActive(true);
+                item4Select.SetActive(false);
+            }
+
+            else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item4BTTN)
+            {
+                item3Select.SetActive(false);
+                item4Select.SetActive(true);
+                item5Select.SetActive(false);
+            }
+
+            else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item5BTTN)
+            {
+                item4Select.SetActive(false);
+                item5Select.SetActive(true);
+                item6Select.SetActive(false);
+            }
+
+            else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item6BTTN)
+            {
+                item5Select.SetActive(false);
+                item6Select.SetActive(true);
+                item7Select.SetActive(false);
+            }
+
+            else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item7BTTN)
+            {
+                item6Select.SetActive(false);
+                item7Select.SetActive(true);
+                item8Select.SetActive(false);
+            }
+
+            else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item8BTTN)
+            {
+                item7Select.SetActive(false);
+                item8Select.SetActive(true);
+                item9Select.SetActive(false);
+            }
+
+            else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == item9BTTN)
+            {
+                item8Select.SetActive(false);
+                item9Select.SetActive(true);
             }
         }
     }
@@ -516,15 +558,15 @@ public class UIBanheiroHandler : MonoBehaviour
     private void SetHealItemQuantities()
     {
 
-        item1Txt.text = "Curativo - " + inventory.paoQuant + "     +10 hp";
-        item2Txt.text = "Suco - " + inventory.biscoitoQuant + "           +15 hp";
-        item3Txt.text = "Fruta - " + inventory.energeticoQuant + "         +20 hp";
-        item4Txt.text = "Fruta - " + inventory.sanduicheQuant + "         +20 hp";
-        item5Txt.text = "Fruta - " + inventory.chocolateQuant + "         +20 hp";
-        item6Txt.text = "Fruta - " + inventory.melanciaQuant + "         +20 hp";
-        item7Txt.text = "Fruta - " + inventory.sobremesaQuant + "         +20 hp";
-        item8Txt.text = "Fruta - " + inventory.cafeQuant + "         +20 hp";
-        item9Txt.text = "Fruta - " + inventory.kitQuant + "         +20 hp";
+        item1Txt.text = "Pao - 10 hp (" + inventory.paoQuant + ")";
+        item2Txt.text = "Biscoito - 25 hp (" + inventory.biscoitoQuant + ")";
+        item3Txt.text = "Energetico - 15 hp (" + inventory.energeticoQuant + ")";
+        item4Txt.text = "Sanduiche - 40 hp 40% df (" + inventory.sanduicheQuant + ")";
+        item5Txt.text = "Chocolate - 30 hp 30% atk (" + inventory.chocolateQuant + ")";
+        item6Txt.text = "Melancia - 35 hp 50% df (" + inventory.melanciaQuant + ")";
+        item7Txt.text = "Sobr. Mor - 50 hp 200% df (" + inventory.sobremesaQuant + ")";
+        item8Txt.text = "Cafe - 45 hp 70% atk (" + inventory.cafeQuant + ")";
+        item9Txt.text = "Kit Med. - 100 hp (" + inventory.kitQuant + ")";
 
     }
     public void JimmyAttributes() {
@@ -569,7 +611,7 @@ public class UIBanheiroHandler : MonoBehaviour
         StartCoroutine(GreenButtonCoolDown());
     }
     public void ReturnButton() {
-        if (Input.GetButtonDown("BRANCO0"))
+        if (Input.GetButtonDown("AMARELO0"))
         {
             if (!dadosItens.activeSelf && !dadosAlice.activeSelf && !dadosJimmy.activeSelf)
             {
@@ -600,6 +642,14 @@ public class UIBanheiroHandler : MonoBehaviour
             {
                 dadosItens.SetActive(false);
                 pencilItens.SetActive(true);
+                item2Select.SetActive(false);
+                item3Select.SetActive(false);
+                item4Select.SetActive(false);
+                item5Select.SetActive(false);
+                item6Select.SetActive(false);
+                item7Select.SetActive(false);
+                item8Select.SetActive(false);
+                item9Select.SetActive(false);
                 itensSelect.Select();
                 canChangeScreen = true;
 
@@ -627,6 +677,8 @@ public class UIBanheiroHandler : MonoBehaviour
             inventory.HealPlayer(item);
         else if (item == "kit" && inventory.kitQuant > 0)
             inventory.HealPlayer(item);
+
+        inventory.ResetTemporaryBuffs();
     }
     public void UpdatePlayerHealth() {
         playerHealth.value = inventory.hp;

@@ -271,7 +271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fruta - 0         +20 hp
+  m_text: Kit med. - 0      +20 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -298,8 +298,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1500869121350592574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -556,7 +556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5452447336330623631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Curativo - 0     +10 hp
+  m_text: sobr. mor. - 0   +10 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -710,8 +710,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 362990849770155563}
     m_SelectOnDown: {fileID: 532054064788540637}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -1552,7 +1552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fruta - 0         +20 hp
+  m_text: energetico - 0  +20 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -1579,8 +1579,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1637,7 +1637,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 2920534477425880367}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 7024793352209036522}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Suco - 0           +15 hp
+  m_text: cafe - 0           +15 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -1771,8 +1771,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3476,7 +3476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fruta - 0         +20 hp
+  m_text: Melancia - 0     +20 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -3503,8 +3503,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3561,7 +3561,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 6628883059032899649}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 5228235601065492414}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -4542,30 +4542,33 @@ MonoBehaviour:
   dadosJimmy: {fileID: 1977173399716915547}
   dadosAlice: {fileID: 2233045752087961633}
   dadosItens: {fileID: 245952357382864984}
-  item1: {fileID: 2270315722705778929}
-  item2: {fileID: 975752555790679606}
-  item3: {fileID: 310453643566743435}
   item1BTTN: {fileID: 7571777319121539822}
   item2BTTN: {fileID: 2920534477425880367}
   item3BTTN: {fileID: 2028119031922825390}
+  item4BTTN: {fileID: 7024793352209036522}
+  item5BTTN: {fileID: 6628883059032899649}
+  item6BTTN: {fileID: 362990849770155563}
+  item7BTTN: {fileID: 5228235601065492414}
+  item8BTTN: {fileID: 532054064788540637}
+  item9BTTN: {fileID: 2998672380624434825}
   item1Txt: {fileID: 2270315722705778929}
   item2Txt: {fileID: 975752555790679606}
   item3Txt: {fileID: 310453643566743435}
-  item4Txt: {fileID: 0}
-  item5Txt: {fileID: 0}
-  item6Txt: {fileID: 0}
-  item7Txt: {fileID: 0}
-  item8Txt: {fileID: 0}
-  item9Txt: {fileID: 0}
+  item4Txt: {fileID: 3447596097240993316}
+  item5Txt: {fileID: 685119307147169922}
+  item6Txt: {fileID: 3879318757961956020}
+  item7Txt: {fileID: 846515058643014417}
+  item8Txt: {fileID: 3294905260493783477}
+  item9Txt: {fileID: 2326368814452498508}
   item1Select: {fileID: 4704495598025607738}
   item2Select: {fileID: 7538329140538929602}
   item3Select: {fileID: 7519499941859844860}
-  item4Select: {fileID: 0}
-  item5Select: {fileID: 0}
-  item6Select: {fileID: 0}
-  item7Select: {fileID: 0}
-  item8Select: {fileID: 0}
-  item9Select: {fileID: 0}
+  item4Select: {fileID: 6329785723243281892}
+  item5Select: {fileID: 5627823640855646793}
+  item6Select: {fileID: 3803750697878810220}
+  item7Select: {fileID: 6604290252282253696}
+  item8Select: {fileID: 4506892970850258122}
+  item9Select: {fileID: 1957901476789727404}
   buffAlicePencil: {fileID: 4661984605430495676}
   buffAliceSelect: {fileID: 5653776561750448747}
   aliceBuff: {fileID: 3052752448026069741}
@@ -4780,7 +4783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Suco - 0           +15 hp
+  m_text: biscoito - 0      +15 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -4807,8 +4810,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5047,7 +5050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Curativo - 0     +10 hp
+  m_text: sanduiche - 0    +10 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -5074,8 +5077,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5131,7 +5134,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 2028119031922825390}
     m_SelectOnDown: {fileID: 6628883059032899649}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -5816,7 +5819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4846352118368643218
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6234,7 +6237,7 @@ GameObject:
   - component: {fileID: 4041293776831743865}
   - component: {fileID: 7326737770964277219}
   m_Layer: 0
-  m_Name: botao vermelho
+  m_Name: amarelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6256,8 +6259,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -38, y: 0}
-  m_SizeDelta: {x: 74.9027, y: 74.9027}
+  m_AnchoredPosition: {x: -38, y: 8}
+  m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4041293776831743865
 CanvasRenderer:
@@ -6287,7 +6290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ddcdc7ef0e1c1114fa2de04b914f019c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af82c8338c508f04da4e8f7209e2fec7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7618,7 +7621,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Curativo - 0     +10 hp
+  m_text: pao - 0             +10 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -7645,8 +7648,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7885,7 +7888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Suco - 0           +15 hp
+  m_text: chocolate - 0   +15 hp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
   m_sharedMaterial: {fileID: 2519951714579838402, guid: d1a091f84d72b1e4c88eb41800a88047, type: 2}
@@ -7912,8 +7915,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
