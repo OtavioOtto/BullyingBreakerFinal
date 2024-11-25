@@ -47,46 +47,47 @@ public class UIBanheiroHandler : MonoBehaviour
     [SerializeField] private GameObject dadosAlice;
     [SerializeField] private GameObject dadosItens;
 
-    [Header("Itens")]
-    [SerializeField] private TMP_Text item1;
-    [SerializeField] private TMP_Text item2;
-    [SerializeField] private TMP_Text item3;
-
     [Header("Itens Game Object")]
     [SerializeField] private Button item1BTTN;
     [SerializeField] private Button item2BTTN;
     [SerializeField] private Button item3BTTN;
+    [SerializeField] private Button item4BTTN;
+    [SerializeField] private Button item5BTTN;
+    [SerializeField] private Button item6BTTN;
+    [SerializeField] private Button item7BTTN;
+    [SerializeField] private Button item8BTTN;
+    [SerializeField] private Button item9BTTN;
 
     [Header("Itens Texts")]
     [SerializeField] private TMP_Text item1Txt;
     [SerializeField] private TMP_Text item2Txt;
     [SerializeField] private TMP_Text item3Txt;
+    [SerializeField] private TMP_Text item4Txt;
+    [SerializeField] private TMP_Text item5Txt;
+    [SerializeField] private TMP_Text item6Txt;
+    [SerializeField] private TMP_Text item7Txt;
+    [SerializeField] private TMP_Text item8Txt;
+    [SerializeField] private TMP_Text item9Txt;
 
     [Header("Itens Select")]
     [SerializeField] private GameObject item1Select;
     [SerializeField] private GameObject item2Select;
     [SerializeField] private GameObject item3Select;
+    [SerializeField] private GameObject item4Select;
+    [SerializeField] private GameObject item5Select;
+    [SerializeField] private GameObject item6Select;
+    [SerializeField] private GameObject item7Select;
+    [SerializeField] private GameObject item8Select;
+    [SerializeField] private GameObject item9Select;
 
     [Header("Dados Alice")]
-    [SerializeField] private GameObject ataqueAlicePencil;
-    [SerializeField] private Button ataqueAliceSelect;
-    [SerializeField] private GameObject defesaAlicePencil;
-    [SerializeField] private Button defesaAliceSelect;
     [SerializeField] private GameObject buffAlicePencil;
     [SerializeField] private Button buffAliceSelect;
-    [SerializeField] private TMP_Text itemAliceAtaque;
-    [SerializeField] private TMP_Text itemAliceDefesa;
     [SerializeField] private TMP_Text aliceBuff;
 
     [Header("DadosJimmy")]
-    [SerializeField] private GameObject ataqueJimmyPencil;
-    [SerializeField] private Button ataqueJimmySelect;
-    [SerializeField] private GameObject defesaJimmyPencil;
-    [SerializeField] private Button defesaJimmySelect;
     [SerializeField] private GameObject buffJimmyPencil;
     [SerializeField] private Button buffJimmySelect;
-    [SerializeField] private TMP_Text itemJimmyAtaque;
-    [SerializeField] private TMP_Text itemJimmyDefesa;
     [SerializeField] private TMP_Text jimmyBuff;
 
     [Header("Health Bar")]
@@ -99,13 +100,9 @@ public class UIBanheiroHandler : MonoBehaviour
     [Header("Inventory System")]
     public InventoryHandler inventory;
 
-    [Header("Recruited Enemies")]
-    public RecruitedEnemiesHadler enemies;
-
     [Header("Horizontal Direction")]
     [SerializeField] private float x0;
 
-    string newItem = "";
     string newBuff = "";
     private void Start()
     {
@@ -116,10 +113,8 @@ public class UIBanheiroHandler : MonoBehaviour
         x0 = Input.GetAxis("HORIZONTAL0");
         ChangeScreens();
         BullyAttributes();
-        //SetEnemyRecruited();
         CharacterAttributes();
         CharacterAttributesScreen();
-        ItemChange();
         BuffChange();
         HealItens();
         HealItensScreen();
@@ -210,22 +205,6 @@ public class UIBanheiroHandler : MonoBehaviour
         }
 
     }
-    /*private void SetEnemyRecruited() {
-        if (enemies.normalBullies) 
-            bulliesRecruited.SetActive(true);
-        else
-            bulliesRecruited.SetActive(false);
-
-        if (enemies.boss1)
-            boss1Recruited.SetActive(true);
-        else
-            boss1Recruited.SetActive(false);
-
-        if (enemies.boss2)
-            boss2Recruited.SetActive(true);
-        else
-            boss2Recruited.SetActive(false);
-    }*/ //continuar dps
     private void CharacterAttributes()
     {
         if (party.activeSelf && EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == jimmySelect && !dadosJimmy.activeSelf)
@@ -269,53 +248,12 @@ public class UIBanheiroHandler : MonoBehaviour
 
         if (dadosJimmy.activeSelf == true)
         {
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == ataqueJimmySelect)
-            {
-                ataqueJimmyPencil.SetActive(true);
-                defesaJimmyPencil.SetActive(false);
-                buffJimmyPencil.SetActive(false);
-            }
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == defesaJimmySelect)
-            {
-                ataqueJimmyPencil.SetActive(false);
-                defesaJimmyPencil.SetActive(true);
-                buffJimmyPencil.SetActive(false);
-            }
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == buffJimmySelect)
-            {
-                ataqueJimmyPencil.SetActive(false);
-                defesaJimmyPencil.SetActive(false);
-                buffJimmyPencil.SetActive(true);
-            }
-
+            buffJimmyPencil.SetActive(true);
         }
 
         if (dadosAlice.activeSelf == true)
         {
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == ataqueAliceSelect)
-            {
-                ataqueAlicePencil.SetActive(true);
-                defesaAlicePencil.SetActive(false);
-                buffAlicePencil.SetActive(false);
-            }
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == defesaAliceSelect)
-            {
-                ataqueAlicePencil.SetActive(false);
-                defesaAlicePencil.SetActive(true);
-                buffAlicePencil.SetActive(false);
-            }
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == buffAliceSelect)
-            {
-                ataqueAlicePencil.SetActive(false);
-                defesaAlicePencil.SetActive(false);
-                buffAlicePencil.SetActive(true);
-            }
-
+            buffAlicePencil.SetActive(true);
         }
     }
     private void HealItensScreen()
@@ -343,473 +281,6 @@ public class UIBanheiroHandler : MonoBehaviour
                 item1Select.SetActive(false);
                 item2Select.SetActive(false);
                 item3Select.SetActive(true);
-            }
-        }
-    }
-    private void ItemChange()
-    {
-        
-
-        string caderno = "Caderno\n+2 Ataque";
-        string lapis = "Lapis\n+3 Ataque";
-        string tesoura = "Tesoura\n+6 Ataque";
-
-        string broche = "Broche\n+3 Defesa";
-        string oculos = "Oculos\n+5 Defesa";
-        string jaqueta = "Jaqueta\n+9 Defesa";
-        if (dadosJimmy.activeSelf == true)
-        {
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == ataqueJimmySelect)
-            {
-                if (!canChangeScreen && Input.GetButtonDown("HORIZONTAL0") && itemJimmyAtaque.text == "")
-                {
-                    if (x0 > 0)
-                    {
-                        if (inventory.cadernoQuant > 0)
-                        {
-                            itemJimmyAtaque.text = caderno;
-                            newItem = "caderno";
-                        }
-                        else if (inventory.lapisQuant > 0)
-                        {
-                            itemJimmyAtaque.text = lapis;
-                            newItem = "lapis";
-                        }
-                        else if (inventory.tesouraQuant > 0)
-                        {
-                            itemJimmyAtaque.text = tesoura;
-                            newItem = "tesoura";
-                        }
-                        else if (inventory.currentAttackItem1 == "" && inventory.cadernoQuant == 0 && inventory.lapisQuant == 0 && inventory.tesouraQuant == 0)
-                            itemJimmyAtaque.text = "Voce nao tem\nitens de ataque";
-                        else
-                            itemJimmyAtaque.text = itemJimmyAtaque.text;
-                    }
-                    else if (x0 < 0)
-                    {
-                        if (inventory.tesouraQuant > 0)
-                        {
-                            itemJimmyAtaque.text = tesoura;
-                            newItem = "tesoura";
-                        }
-                        else if (inventory.lapisQuant > 0)
-                        {
-                            itemJimmyAtaque.text = lapis;
-                            newItem = "lapis";
-                        }
-                        else if (inventory.cadernoQuant > 0)
-                        {
-                            itemJimmyAtaque.text = caderno;
-                            newItem = "caderno";
-                        }
-                        else if (inventory.currentAttackItem1 == "" && inventory.cadernoQuant == 0 && inventory.lapisQuant == 0 && inventory.tesouraQuant == 0)
-                            itemJimmyAtaque.text = "Voce nao tem\nitens de ataque";
-                        else
-                            itemJimmyAtaque.text = itemJimmyAtaque.text;
-                    }
-                }
-
-                else if (!canChangeScreen && ((Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && itemJimmyAtaque.text == caderno) || (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && itemJimmyAtaque.text == tesoura)))
-                {
-                    if (inventory.lapisQuant > 0)
-                    {
-                        itemJimmyAtaque.text = lapis;
-                        newItem = "lapis";
-                    }
-                    else if (itemJimmyAtaque.text == caderno)
-                    {
-                        if (inventory.tesouraQuant > 0)
-                        {
-                            itemJimmyAtaque.text = tesoura;
-                            newItem = "tesoura";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-                    else if (itemJimmyAtaque.text == tesoura)
-                    {
-                        if (inventory.cadernoQuant > 0)
-                        {
-                            itemJimmyAtaque.text = caderno;
-                            newItem = "caderno";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && !canChangeScreen && itemJimmyAtaque.text == lapis)
-                {
-
-                    if (inventory.cadernoQuant > 0)
-                    {
-                        itemJimmyAtaque.text = caderno;
-                        newItem = "caderno";
-                    }
-                    else { }//n fzr nd pq ele n tem mais cadernos
-
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && !canChangeScreen && itemJimmyAtaque.text == lapis)
-                {
-
-                    if (inventory.tesouraQuant > 0)
-                    {
-                        itemJimmyAtaque.text = tesoura;
-                        newItem = "tesoura";
-                    }
-                    else { }//n fzr nd pq ele n tem mais tesouras
-
-                }
-                if (Input.GetButtonDown("VERDE0") && canUseGreen)
-                {
-                    inventory.ChangeItem(newItem, "player1");
-                    dadosJimmy.SetActive(false);
-                    pencilJimmy.SetActive(true);
-                    jimmySelect.Select();
-                    canChangeScreen = true;
-                    canUseGreen = false;
-                    StartCoroutine(GreenButtonCoolDown());
-                }
-            }
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == defesaJimmySelect)
-            {
-                if (!canChangeScreen && Input.GetButtonDown("HORIZONTAL0") && itemJimmyDefesa.text == "")
-                {
-                    if (x0 > 0)
-                    {
-                        if (inventory.brocheQuant > 0)
-                        {
-                            itemJimmyDefesa.text = broche;
-                            newItem = "broche";
-                        }
-                        else if (inventory.oculosQuant > 0)
-                        {
-                            itemJimmyDefesa.text = oculos;
-                            newItem = "oculos";
-                        }
-                        else if (inventory.jaquetaQuant > 0)
-                        {
-                            itemJimmyDefesa.text = jaqueta;
-                            newItem = "jaqueta";
-                        }
-                        else if (inventory.currentDefenseItem1 == "" && inventory.brocheQuant == 0 && inventory.oculosQuant == 0 && inventory.jaquetaQuant == 0)
-                            itemJimmyDefesa.text = "Voce nao tem\nitens de defesa";
-                        else
-                            itemJimmyDefesa.text = itemJimmyDefesa.text;
-                    }
-                    else if (x0 < 0)
-                    {
-                        if (inventory.jaquetaQuant > 0)
-                        {
-                            itemJimmyDefesa.text = jaqueta;
-                            newItem = "jaqueta";
-                        }
-                        else if (inventory.oculosQuant > 0)
-                        {
-                            itemJimmyDefesa.text = oculos;
-                            newItem = "oculos";
-                        }
-                        else if (inventory.brocheQuant > 0)
-                        {
-                            itemJimmyDefesa.text = broche;
-                            newItem = "broche";
-                        }
-                        else if (inventory.currentDefenseItem1 == "" && inventory.brocheQuant == 0 && inventory.oculosQuant == 0 && inventory.jaquetaQuant == 0)
-                            itemJimmyDefesa.text = "Voce nao tem\nitens de defesa";
-                        else
-                            itemJimmyDefesa.text = itemJimmyDefesa.text;
-                    }
-                }
-
-                else if (!canChangeScreen && ((Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && itemJimmyDefesa.text == broche) || (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && itemJimmyDefesa.text == jaqueta)))
-                {
-
-                    if (inventory.oculosQuant > 0)
-                    {
-                        itemJimmyDefesa.text = oculos;
-                        newItem = "oculos";
-                    }
-                    else if (itemJimmyDefesa.text == broche)
-                    {
-                        if (inventory.jaquetaQuant > 0)
-                        {
-                            itemJimmyDefesa.text = jaqueta;
-                            newItem = "jaqueta";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-                    else if (itemJimmyDefesa.text == jaqueta)
-                    {
-                        if (inventory.brocheQuant > 0)
-                        {
-                            itemJimmyDefesa.text = broche;
-                            newItem = "broche";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && !canChangeScreen && itemJimmyDefesa.text == oculos)
-                {
-
-                    if (inventory.brocheQuant > 0)
-                    {
-                        itemJimmyDefesa.text = broche;
-                        newItem = "broche";
-                    }
-                    else { }//n fzr nd pq ele n tem mais cadernos
-
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && !canChangeScreen && itemJimmyDefesa.text == oculos)
-                {
-
-                    if (inventory.jaquetaQuant > 0)
-                    {
-                        itemJimmyDefesa.text = jaqueta;
-                        newItem = "jaqueta";
-                    }
-                    else { }//n fzr nd pq ele n tem mais cadernos
-
-                }
-                if (Input.GetButtonDown("VERDE0") && canUseGreen)
-                {
-                    inventory.ChangeItem(newItem, "player1");
-                    dadosJimmy.SetActive(false);
-                    pencilJimmy.SetActive(true);
-                    jimmySelect.Select();
-                    canChangeScreen = true;
-                    canUseGreen = false;
-                    StartCoroutine(GreenButtonCoolDown());
-                }
-            }
-        }
-        if (dadosAlice.activeSelf == true)
-        {
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == ataqueAliceSelect)
-            {
-                if (!canChangeScreen && Input.GetButtonDown("HORIZONTAL0") && itemAliceAtaque.text == "")
-                {
-                    if (x0 > 0)
-                    {
-                        if (inventory.cadernoQuant > 0)
-                        {
-                            itemAliceAtaque.text = caderno;
-                            newItem = "caderno";
-                        }
-                        else if (inventory.lapisQuant > 0)
-                        {
-                            itemAliceAtaque.text = lapis;
-                            newItem = "lapis";
-                        }
-                        else if (inventory.tesouraQuant > 0)
-                        {
-                            itemAliceAtaque.text = tesoura;
-                            newItem = "tesoura";
-                        }
-                        else if (inventory.currentAttackItem2 == "" && inventory.cadernoQuant == 0 && inventory.lapisQuant == 0 && inventory.tesouraQuant == 0)
-                            itemAliceAtaque.text = "Voce nao tem\nitens de ataque";
-                        else
-                            itemAliceAtaque.text = itemAliceAtaque.text;
-                    }
-                    else if (x0 < 0)
-                    {
-                        if (inventory.tesouraQuant > 0)
-                        {
-                            itemAliceAtaque.text = tesoura;
-                            newItem = "tesoura";
-                        }
-                        else if (inventory.lapisQuant > 0)
-                        {
-                            itemAliceAtaque.text = lapis;
-                            newItem = "lapis";
-                        }
-                        else if (inventory.cadernoQuant > 0)
-                        {
-                            itemAliceAtaque.text = caderno;
-                            newItem = "caderno";
-                        }
-                        else if (inventory.currentAttackItem2 == "" && inventory.cadernoQuant == 0 && inventory.lapisQuant == 0 && inventory.tesouraQuant == 0)
-                            itemAliceAtaque.text = "Voce nao tem\nitens de ataque";
-                        else
-                            itemAliceAtaque.text = itemAliceAtaque.text;
-                    }
-                }
-
-                else if (!canChangeScreen && ((Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && itemAliceAtaque.text == caderno) || (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && itemAliceAtaque.text == tesoura)))
-                {
-                    if (inventory.lapisQuant > 0)
-                    {
-                        itemAliceAtaque.text = lapis;
-                        newItem = "lapis";
-                    }
-                    else if (itemAliceAtaque.text == caderno)
-                    {
-                        if (inventory.tesouraQuant > 0)
-                        {
-                            itemAliceAtaque.text = tesoura;
-                            newItem = "tesoura";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-                    else if (itemAliceAtaque.text == tesoura)
-                    {
-                        if (inventory.cadernoQuant > 0)
-                        {
-                            itemAliceAtaque.text = caderno;
-                            newItem = "caderno";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-
-
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && !canChangeScreen && itemAliceAtaque.text == lapis)
-                {
-                    if (inventory.cadernoQuant > 0)
-                    {
-                        itemAliceAtaque.text = caderno;
-                        newItem = "caderno";
-                    }
-                    else { }//n fzr nd pq ele n tem mais cadernos
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && !canChangeScreen && itemAliceAtaque.text == lapis)
-                {
-                    if (inventory.tesouraQuant > 0)
-                    {
-                        itemAliceAtaque.text = tesoura;
-                        newItem = "tesoura";
-                    }
-                    else { }//n fzr nd pq ele n tem mais tesouras
-                }
-                if (Input.GetButtonDown("VERDE0") && canUseGreen)
-                {
-
-                    inventory.ChangeItem(newItem, "player2");
-                    dadosAlice.SetActive(false);
-                    pencilAlice.SetActive(true);
-                    aliceSelect.Select();
-                    canChangeScreen = true;
-                    canUseGreen = false;
-                    StartCoroutine(GreenButtonCoolDown());
-                }
-            }
-
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == defesaAliceSelect)
-            {
-                if (!canChangeScreen && Input.GetButtonDown("HORIZONTAL0") && itemAliceDefesa.text == "")
-                {
-                    if (x0 > 0)
-                    {
-                        if (inventory.brocheQuant > 0)
-                        {
-                            itemAliceDefesa.text = broche;
-                            newItem = "broche";
-                        }
-                        else if (inventory.oculosQuant > 0)
-                        {
-                            itemAliceDefesa.text = oculos;
-                            newItem = "oculos";
-                        }
-                        else if (inventory.jaquetaQuant > 0)
-                        {
-                            itemAliceDefesa.text = jaqueta;
-                            newItem = "jaqueta";
-                        }
-                        else if (inventory.currentDefenseItem2 == "" && inventory.brocheQuant == 0 && inventory.oculosQuant == 0 && inventory.jaquetaQuant == 0)
-                            itemAliceDefesa.text = "Voce nao tem\nitens de defesa";
-                        else
-                            itemAliceDefesa.text = itemAliceDefesa.text;
-                    }
-                    else if (x0 < 0)
-                    {
-                        if (inventory.jaquetaQuant > 0)
-                        {
-                            itemAliceDefesa.text = jaqueta;
-                            newItem = "jaqueta";
-                        }
-                        else if (inventory.oculosQuant > 0)
-                        {
-                            itemAliceDefesa.text = oculos;
-                            newItem = "oculos";
-                        }
-                        else if (inventory.brocheQuant > 0)
-                        {
-                            itemAliceDefesa.text = broche;
-                            newItem = "broche";
-                        }
-                        else if (inventory.currentDefenseItem2 == "" && inventory.brocheQuant == 0 && inventory.oculosQuant == 0 && inventory.jaquetaQuant == 0)
-                            itemAliceDefesa.text = "Voce nao tem\nitens de defesa";
-                        else
-                            itemAliceDefesa.text = itemAliceDefesa.text;
-                    }
-                }
-
-                else if (!canChangeScreen && ((Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && itemAliceDefesa.text == broche) || (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && itemAliceDefesa.text == jaqueta)))
-                {
-
-                    if (inventory.oculosQuant > 0)
-                    {
-                        itemAliceDefesa.text = oculos;
-                        newItem = "oculos";
-                    }
-                    else if (itemAliceDefesa.text == broche)
-                    {
-                        if (inventory.jaquetaQuant > 0)
-                        {
-                            itemAliceDefesa.text = jaqueta;
-                            newItem = "jaqueta";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-                    else if (itemAliceDefesa.text == jaqueta)
-                    {
-                        if (inventory.brocheQuant > 0)
-                        {
-                            itemAliceDefesa.text = broche;
-                            newItem = "broche";
-                        }
-                        else { }//n fzr nd pq ele n tem mais itens
-                    }
-
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 < 0 && !canChangeScreen && itemAliceDefesa.text == oculos)
-                {
-                    if (inventory.brocheQuant > 0)
-                    {
-                        itemAliceDefesa.text = broche;
-                        newItem = "broche";
-                    }
-                    else { }//n fzr nd pq ele n tem mais itens
-
-                }
-
-                else if (Input.GetButtonDown("HORIZONTAL0") && x0 > 0 && !canChangeScreen && itemAliceDefesa.text == oculos)
-                {
-
-                    if (inventory.jaquetaQuant > 0)
-                    {
-                        itemAliceDefesa.text = jaqueta;
-                        newItem = "jaqueta";
-                    }
-                    else { }//n fzr nd pq ele n tem mais itens
-                }
-                if (Input.GetButtonDown("VERDE0") && canUseGreen)
-                {
-
-                    inventory.ChangeItem(newItem, "player2");
-                    dadosAlice.SetActive(false);
-                    pencilAlice.SetActive(true);
-                    aliceSelect.Select();
-                    canChangeScreen = true;
-                    canUseGreen = false;
-                    StartCoroutine(GreenButtonCoolDown());
-                }
             }
         }
     }
@@ -1045,39 +516,18 @@ public class UIBanheiroHandler : MonoBehaviour
     private void SetHealItemQuantities()
     {
 
-        item1Txt.text = "Curativo - " + inventory.curativoQuant + "     +10 hp";
-        item2Txt.text = "Suco - " + inventory.sucoQuant + "           +15 hp";
-        item3Txt.text = "Fruta - " + inventory.frutaQuant + "         +20 hp";
+        item1Txt.text = "Curativo - " + inventory.paoQuant + "     +10 hp";
+        item2Txt.text = "Suco - " + inventory.biscoitoQuant + "           +15 hp";
+        item3Txt.text = "Fruta - " + inventory.energeticoQuant + "         +20 hp";
+        item4Txt.text = "Fruta - " + inventory.sanduicheQuant + "         +20 hp";
+        item5Txt.text = "Fruta - " + inventory.chocolateQuant + "         +20 hp";
+        item6Txt.text = "Fruta - " + inventory.melanciaQuant + "         +20 hp";
+        item7Txt.text = "Fruta - " + inventory.sobremesaQuant + "         +20 hp";
+        item8Txt.text = "Fruta - " + inventory.cafeQuant + "         +20 hp";
+        item9Txt.text = "Fruta - " + inventory.kitQuant + "         +20 hp";
 
     }
     public void JimmyAttributes() {
-        if (inventory.currentAttackItem1 != "")
-        {
-            if (inventory.currentAttackItem1 == "caderno")
-                itemJimmyAtaque.text = "Caderno\n+2 Ataque";
-            else if (inventory.currentAttackItem1 == "lapis")
-                itemJimmyAtaque.text = "Lapis\n+3 Ataque";
-            else if (inventory.currentAttackItem1 == "tesoura")
-                itemJimmyAtaque.text = "Tesoura\n+6 Ataque";
-        }
-        else
-        {
-            itemJimmyAtaque.text = "";
-        }
-
-        if (inventory.currentDefenseItem1 != "")
-        {
-            if (inventory.currentDefenseItem1 == "broche")
-                itemJimmyDefesa.text = "Broche\n+3 Defesa";
-            else if (inventory.currentDefenseItem1 == "oculos")
-                itemJimmyDefesa.text = "Oculos\n+5 Defesa";
-            else if (inventory.currentDefenseItem1 == "jaqueta")
-                itemJimmyDefesa.text = "Jaqueta\n+9 Defesa";
-        }
-        else
-        {
-            itemJimmyDefesa.text = "";
-        }
 
         if (inventory.currentEquippedBuff1 != "")
         {
@@ -1094,41 +544,11 @@ public class UIBanheiroHandler : MonoBehaviour
         }
         dadosJimmy.SetActive(true);
         pencilJimmy.SetActive(false);
-        defesaJimmyPencil.SetActive(true);
-        defesaJimmySelect.Select();
         canChangeScreen = false;
         canUseGreen = false;
         StartCoroutine(GreenButtonCoolDown());
     }
-    public void AliceAttributes() {
-        if (inventory.currentAttackItem2 != "")
-        {
-            if (inventory.currentAttackItem2 == "caderno")
-                itemAliceAtaque.text = "Caderno\n+2 Ataque";
-            else if (inventory.currentAttackItem2 == "lapis")
-                itemAliceAtaque.text = "Lapis\n+3 Ataque";
-            else if (inventory.currentAttackItem2 == "tesoura")
-                itemAliceAtaque.text = "Tesoura\n+6 Ataque";
-        }
-        else
-        {
-            itemAliceAtaque.text = "";
-        }
-
-        if (inventory.currentDefenseItem2 != "")
-        {
-            if (inventory.currentDefenseItem2 == "broche")
-                itemAliceDefesa.text = "Broche\n+3 Defesa";
-            else if (inventory.currentDefenseItem2 == "oculos")
-                itemAliceDefesa.text = "Oculos\n+5 Defesa";
-            else if (inventory.currentDefenseItem2 == "jaqueta")
-                itemAliceDefesa.text = "Jaqueta\n+9 Defesa";
-        }
-        else
-        {
-            itemAliceDefesa.text = "";
-        }
-
+    public void AliceAttributes() { 
         if (inventory.currentEquippedBuff2 != "")
         {
             if (inventory.currentEquippedBuff2 == "buffAtk")
@@ -1144,8 +564,6 @@ public class UIBanheiroHandler : MonoBehaviour
         }
         pencilAlice.SetActive(false);
         dadosAlice.SetActive(true);
-        defesaAlicePencil.SetActive(true);
-        defesaAliceSelect.Select();
         canChangeScreen = false;
         canUseGreen = false;
         StartCoroutine(GreenButtonCoolDown());
@@ -1191,12 +609,24 @@ public class UIBanheiroHandler : MonoBehaviour
     }
     public void UseHealtem(string item)
     {
-            if (item == "curativo" && inventory.curativoQuant > 0)
-                inventory.HealPlayer(item);
-            else if (item == "suco" && inventory.sucoQuant > 0)
-                inventory.HealPlayer(item);
-            else if (item == "fruta" && inventory.frutaQuant > 0)
-                inventory.HealPlayer(item);        
+        if (item == "pao" && inventory.paoQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "biscoito" && inventory.biscoitoQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "energetico" && inventory.energeticoQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "sanduiche" && inventory.sanduicheQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "chocolate" && inventory.chocolateQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "melancia" && inventory.melanciaQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "sobremesa" && inventory.sobremesaQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "cafe" && inventory.cafeQuant > 0)
+            inventory.HealPlayer(item);
+        else if (item == "kit" && inventory.kitQuant > 0)
+            inventory.HealPlayer(item);
     }
     public void UpdatePlayerHealth() {
         playerHealth.value = inventory.hp;
@@ -1206,4 +636,5 @@ public class UIBanheiroHandler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         canUseGreen = true;
     }
+    
 }

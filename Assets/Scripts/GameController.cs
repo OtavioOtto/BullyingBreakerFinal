@@ -72,9 +72,24 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject secondItemButtonTxt;
     [SerializeField] private Button thirdItemButton;
     [SerializeField] private GameObject thirdItemButtonTxt;
+    [SerializeField] private Button fourthItemButton;
+    [SerializeField] private GameObject fourthItemButtonTxt;
+    [SerializeField] private Button fithItemButton;
+    [SerializeField] private GameObject fithItemButtonTxt;
+    [SerializeField] private Button sixthItemButton;
+    [SerializeField] private GameObject sixthItemButtonTxt;
+    [SerializeField] private Button seventhItemButton;
+    [SerializeField] private GameObject seventhItemButtonTxt;
+    [SerializeField] private Button eighthItemButton;
+    [SerializeField] private GameObject eighthItemButtonTxt;
+    [SerializeField] private Button ninthItemButton;
+    [SerializeField] private GameObject ninthItemButtonTxt;
 
     [Header("Buttons Groups")]
     [SerializeField] private GameObject itemOptions;
+    [SerializeField] private GameObject firstItems;
+    [SerializeField] private GameObject secondItems;
+    [SerializeField] private GameObject thirdItems;
     [SerializeField] private GameObject empathyOptions;
     [SerializeField] private GameObject attackOptions;
     [SerializeField] private GameObject defaultOptions;
@@ -100,12 +115,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text battlePointsTxt;
 
     [Header("Itens")]
-    [SerializeField] private int curativos;
-    [SerializeField] private int sucos;
-    [SerializeField] private int frutas;
+    [SerializeField] private int pao;
+    [SerializeField] private int biscoito;
+    [SerializeField] private int energetico;
+    [SerializeField] private int chocolate;
+    [SerializeField] private int sanduiche;
+    [SerializeField] private int melancia;
+    [SerializeField] private int sobremesa;
+    [SerializeField] private int cafe;
+    [SerializeField] private int kit;
 
     private List<GameObject> turnOrder;
-    private int currentTurnIndex;
+    public int currentTurnIndex;
     private float menu;
     private float itemDefenseValue1;
     private float itemDefenseValue2;
@@ -118,6 +139,7 @@ public class GameController : MonoBehaviour
     [Header("Player inventory")]
     public InventoryHandler inventory;
     public RecruitedEnemiesHadler enemies;
+    public AnimateBattles animator;
     void Start()
     {
         if (inventory.currentDefenseItem1 != "")
@@ -130,16 +152,24 @@ public class GameController : MonoBehaviour
             empathyBuff = 0.2f;
         if (inventory.currentEquippedBuff1 == "buffHeal" || inventory.currentEquippedBuff2 == "buffHeal")
             healBuff = 0.3f;
-
+        animator = GetComponent<AnimateBattles>();
         InitializeGame();
         SetEnemy();
+
+
     }
     private void Update()
     {
         playerHealth.value = inventory.hp;
-        curativos = inventory.curativoQuant;
-        sucos = inventory.sucoQuant;
-        frutas = inventory.frutaQuant;
+        pao = inventory.paoQuant;
+        biscoito = inventory.biscoitoQuant;
+        energetico = inventory.energeticoQuant;
+        sanduiche = inventory.sanduicheQuant;
+        melancia = inventory.melanciaQuant;
+        chocolate = inventory.chocolateQuant;
+        sobremesa = inventory.sobremesaQuant;
+        cafe = inventory.cafeQuant;
+        kit = inventory.kitQuant;
         menu = Input.GetAxis("MENU");
         Menu();
         SetButtonTexts();
@@ -230,6 +260,7 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator EnemyAttackRoutine()
     {
+        animator.SetAnimations("enemy");
         yield return new WaitForSeconds(1.0f);
         if (inventory.currentDefenseItem1 != "" || inventory.currentDefenseItem2 != "")
             playerHealth.value -= playerHealth.maxValue * (enemyAttackValue - (itemDefenseValue1 + itemDefenseValue2));
@@ -269,9 +300,9 @@ public class GameController : MonoBehaviour
         }
 
     }
-    public void EmpathyButton(GameObject chonsenButton) {
+    public void EmpathyButton(int botao) {
 
-        AdjustEnemyAura(chonsenButton);
+        AdjustEnemyAura(botao);
 
         if (enemyAura.value == 0)
         {
@@ -299,16 +330,16 @@ public class GameController : MonoBehaviour
         }
 
     }
-    private void AdjustEnemyAura(GameObject buttonOBJ)
+    private void AdjustEnemyAura(int botao)
     {
         if (inventory.empathyBuff)
         {
-            if (buttonOBJ == firstEmpathyButton.gameObject)
+            if (botao == 1)
             {
                 enemyAura.value -= enemyAura.maxValue * (playerEmpathyValue + empathyBuff);
             }
 
-            else if (buttonOBJ == secondEmpathyButton.gameObject)
+            else if (botao == 2)
             {
                 battlePoints -= 15;
                 enemyAura.value -= enemyAura.maxValue * (playerEmpathyValue * 2.5f + empathyBuff);
@@ -316,13 +347,14 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            if (buttonOBJ == firstEmpathyButton.gameObject)
+            if (botao == 1)
             {
                 enemyAura.value -= enemyAura.maxValue * playerEmpathyValue;
             }
 
-            else if (buttonOBJ == secondEmpathyButton.gameObject)
+            else if (botao == 2)
             {
+                battlePoints -= 15;
                 enemyAura.value -= enemyAura.maxValue * playerEmpathyValue * 2;
             }
         }
@@ -331,50 +363,27 @@ public class GameController : MonoBehaviour
     }
     public void AttackOptions()
     {
-        if (turnOrder[currentTurnIndex] == player1)
+        if (battlePoints >= 10)
         {
-            if (battlePoints >= 10 && inventory.currentAttackItem1 != "")
-            {
-                attackOptions.SetActive(true);
-                secondAttackButton.interactable = true;
-                defaultOptions.SetActive(false);
-                firstAttackButton.Select();
-            }
-
-
-            else
-            {
-                attackOptions.SetActive(true);
-                defaultOptions.SetActive(false);
-                firstAttackButton.Select();
-                secondAttackButton.interactable = false;
-            }
+            attackOptions.SetActive(true);
+            secondAttackButton.interactable = true;
+            defaultOptions.SetActive(false);
+            firstAttackButton.Select();
         }
 
-        if (turnOrder[currentTurnIndex] == player2)
+
+        else
         {
-            if (battlePoints > 10 && inventory.currentAttackItem2 != "")
-            {
-                attackOptions.SetActive(true);
-                secondAttackButton.interactable = true;
-                defaultOptions.SetActive(false);
-                firstAttackButton.Select();
-            }
-
-
-            else
-            {
-                attackOptions.SetActive(true);
-                defaultOptions.SetActive(false);
-                firstAttackButton.Select();
-                secondAttackButton.interactable = false;
-            }
+            attackOptions.SetActive(true);
+            defaultOptions.SetActive(false);
+            firstAttackButton.Select();
+            secondAttackButton.interactable = false;
         }
 
     }
-    public void AttackButton(GameObject chosenButton)
+    public void AttackButton(int botao)
     {
-        AdjustEnemyHealth(chosenButton);
+        AdjustEnemyHealth(botao);
 
         if (enemyHealth.value == 0)
         {
@@ -438,16 +447,16 @@ public class GameController : MonoBehaviour
         }
 
     }
-    private void AdjustEnemyHealth(GameObject buttonOBJ)
+    private void AdjustEnemyHealth(int botao)
     {
         if (inventory.attackBuff)
         {
-            if (buttonOBJ == firstAttackButton.gameObject)
+            if (botao == 1)
             {
                 enemyHealth.value -= enemyHealth.maxValue * (playerAttackValue + attackBuff);
             }
 
-            else if (buttonOBJ == secondAttackButton.gameObject)
+            else if (botao == 2)
             {
                 battlePoints -= 10;
                 enemyHealth.value -= enemyHealth.maxValue * (playerAttackValue * 2 + attackBuff);
@@ -455,12 +464,12 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            if (buttonOBJ == firstAttackButton.gameObject)
+            if (botao == 1)
             {
                 enemyHealth.value -= enemyHealth.maxValue * playerAttackValue;
             }
 
-            else if (buttonOBJ == secondAttackButton.gameObject)
+            else if (botao == 2)
             {
                 battlePoints -= 10;
                 enemyHealth.value -= enemyHealth.maxValue * playerAttackValue * 2;
@@ -471,97 +480,133 @@ public class GameController : MonoBehaviour
     {
         itemOptions.SetActive(true);
         defaultOptions.SetActive(false);
-        if (curativos > 0 && sucos == 0 && frutas == 0)
-        {
-            firstItemButton.Select();
-            firstItemButton.interactable = true;
-            secondItemButton.interactable = false;
-            thirdItemButton.interactable = false;
-        }
 
-        else if (curativos > 0 && sucos > 0 && frutas == 0)
-        {
-            firstItemButton.Select();
-            firstItemButton.interactable = true;
-            secondItemButton.interactable = true;
-            thirdItemButton.interactable = false;
-        }
+        firstItemButton.interactable = false;
+        secondItemButton.interactable = false;
+        thirdItemButton.interactable = false;
+        fourthItemButton.interactable = false;
+        fithItemButton.interactable = false;
+        sixthItemButton.interactable = false;
+        seventhItemButton.interactable = false;
+        eighthItemButton.interactable = false;
+        ninthItemButton.interactable = false;
 
-        else if (curativos > 0 && sucos > 0 && frutas > 0)
-        {
-            firstItemButton.Select();
+        if (pao > 0) 
             firstItemButton.interactable = true;
+
+        if (biscoito > 0)
             secondItemButton.interactable = true;
+
+        if (energetico > 0)
             thirdItemButton.interactable = true;
-        }
 
-        else if (curativos == 0 && sucos > 0 && frutas == 0)
-        {
+        if (sanduiche > 0)
+            fourthItemButton.interactable = true;
+
+        if (chocolate > 0)
+            fithItemButton.interactable = true;
+
+        if (melancia > 0)
+            sixthItemButton.interactable = true;
+
+        if (sobremesa > 0)
+            seventhItemButton.interactable = true;
+
+        if (cafe > 0)
+            eighthItemButton.interactable = true;
+
+        if (kit > 0)
+            ninthItemButton.interactable = true;
+
+        if (pao > 0)
+            firstItemButton.Select();
+
+        else if (biscoito > 0)
             secondItemButton.Select();
-            firstItemButton.interactable = false;
-            secondItemButton.interactable = true;
-            thirdItemButton.interactable = false;
-        }
 
-        else if (curativos == 0 && sucos > 0 && frutas > 0)
-        {
-
-            secondItemButton.Select();
-            firstItemButton.interactable = false;
-            secondItemButton.interactable = true;
-            thirdItemButton.interactable = true;
-        }
-
-        else if (curativos > 0 && sucos == 0 && frutas > 0)
-        {
-            firstItemButton.Select();
-            firstItemButton.interactable = true;
-            secondItemButton.interactable = false;
-            thirdItemButton.interactable = true;
-            Debug.Log("chego");
-        }
-
-        else if (curativos == 0 && sucos == 0 && frutas > 0)
-        {
+        else if (energetico > 0)
             thirdItemButton.Select();
-            firstItemButton.interactable = false;
-            secondItemButton.interactable = false;
-            thirdItemButton.interactable = true;
-        }
-        else {
-            firstItemButtonTxt.SetActive(false);
-            secondItemButtonTxt.SetActive(false);
-            thirdItemButtonTxt.SetActive(false);
-            firstItemButton.interactable = false;
-            secondItemButton.interactable = false;
-            thirdItemButton.interactable = false;
-        }
+
+        else if (sanduiche > 0)
+            fourthItemButton.Select();
+
+        else if (chocolate > 0)
+            fithItemButton.Select();
+
+        else if (melancia > 0)
+            sixthItemButton.Select();
+
+        else if (sobremesa > 0)
+            seventhItemButton.Select();
+
+        else if (cafe > 0)
+            eighthItemButton.Select();
+
+        else if (kit > 0)
+            ninthItemButton.Select();
+
     }
-    public void ItemButton(string itemName)
+    public void ItemButton(int ordem)
     {
-        AdjustPlayerHealth(itemName);
+        StartCoroutine(AdjustPlayerHealth(ordem));
         NextTurn();
     }
-    private void AdjustPlayerHealth(string item) {
-
-        if (item == "curativo")
+    private IEnumerator AdjustPlayerHealth(int ordem) {
+        animator.SetAnimations("item");
+        yield return new WaitForSeconds(1.0f);
+        if (ordem == 1)
         {
             playerHealth.value += playerHealth.maxValue * 0.1f + healBuff;
-            inventory.HealPlayer("curativo");
+            inventory.HealPlayer("pao");
         }
 
-        if (item == "suco")
+        else if (ordem == 2)
         {
             playerHealth.value += playerHealth.maxValue * 0.15f + healBuff;
-            inventory.HealPlayer("suco");
+            inventory.HealPlayer("biscoito");
         }
 
-        if (item == "fruta")
+        else if (ordem == 3)
         {
             playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
-            inventory.HealPlayer("fruta");
+            inventory.HealPlayer("energetico");
         }
 
+        else if (ordem == 4)
+        {
+            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
+            inventory.HealPlayer("sanduiche");
+        }
+
+        else if (ordem == 5)
+        {
+            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
+            inventory.HealPlayer("chocolate");
+        }
+
+        else if (ordem == 6)
+        {
+            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
+            inventory.HealPlayer("melancia");
+        }
+
+        else if (ordem == 7)
+        {
+            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
+            inventory.HealPlayer("sobremesa");
+        }
+
+        else if (ordem == 8)
+        {
+            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
+            inventory.HealPlayer("cafe");
+        }
+
+        else if (ordem == 9)
+        {
+            playerHealth.value += playerHealth.maxValue * 0.25f + healBuff;
+            inventory.HealPlayer("chocolate");
+        }
     }
     private void NextTurn()
     {
@@ -630,14 +675,12 @@ public class GameController : MonoBehaviour
             {
                 firstAttackButtonTxt.SetActive(true);
                 secondAttackButtonTxt.SetActive(false);
-
             }
 
             if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == secondAttackButton)
             {
                 firstAttackButtonTxt.SetActive(false);
                 secondAttackButtonTxt.SetActive(true);
-
             }
         }
 
@@ -647,41 +690,108 @@ public class GameController : MonoBehaviour
             {
                 firstEmpathyButtonTxt.SetActive(true);
                 secondEmpathyButtonTxt.SetActive(false);
-
             }
 
             if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == secondEmpathyButton)
             {
                 firstEmpathyButtonTxt.SetActive(false);
                 secondEmpathyButtonTxt.SetActive(true);
-
             }
         }
 
         if (itemOptions.activeSelf)
         {
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == firstItemButton)
+            if (firstItems.activeSelf)
             {
-                firstItemButtonTxt.SetActive(true);
-                secondItemButtonTxt.SetActive(false);
-                thirdItemButtonTxt.SetActive(false);
+                if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == firstItemButton)
+                {
+                    firstItemButtonTxt.SetActive(true);
+                    secondItemButtonTxt.SetActive(false);
+                    thirdItemButtonTxt.SetActive(false);
+                }
 
+                else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == secondItemButton)
+                {
+                    firstItemButtonTxt.SetActive(false);
+                    secondItemButtonTxt.SetActive(true);
+                    thirdItemButtonTxt.SetActive(false);
+                }
+
+                else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == thirdItemButton)
+                {
+                    firstItemButtonTxt.SetActive(false);
+                    secondItemButtonTxt.SetActive(false);
+                    thirdItemButtonTxt.SetActive(true);
+                }
+
+                else
+                {
+                    firstItemButtonTxt.SetActive(false);
+                    secondItemButtonTxt.SetActive(false);
+                    thirdItemButtonTxt.SetActive(false);
+                }
             }
 
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == secondItemButton)
+            else if (secondItems.activeSelf)
             {
-                firstItemButtonTxt.SetActive(false);
-                secondItemButtonTxt.SetActive(true);
-                thirdItemButtonTxt.SetActive(false);
+                if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == fourthItemButton)
+                {
+                    fourthItemButtonTxt.SetActive(true);
+                    fithItemButtonTxt.SetActive(false);
+                    sixthItemButtonTxt.SetActive(false);
+                }
 
+                else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == fithItemButton)
+                {
+                    fourthItemButtonTxt.SetActive(false);
+                    fithItemButtonTxt.SetActive(true);
+                    sixthItemButtonTxt.SetActive(false);
+                }
+
+                else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == sixthItemButton)
+                {
+                    fourthItemButtonTxt.SetActive(false);
+                    fithItemButtonTxt.SetActive(false);
+                    sixthItemButtonTxt.SetActive(true);
+                }
+
+                else
+                {
+                    fourthItemButtonTxt.SetActive(false);
+                    fithItemButtonTxt.SetActive(false);
+                    sixthItemButtonTxt.SetActive(false);
+                }
             }
 
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == thirdItemButton)
+            else if (thirdItems.activeSelf)
             {
-                firstItemButtonTxt.SetActive(false);
-                secondItemButtonTxt.SetActive(false);
-                thirdItemButtonTxt.SetActive(true);
+                if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == seventhItemButton)
+                {
+                    seventhItemButtonTxt.SetActive(true);
+                    eighthItemButtonTxt.SetActive(false);
+                    ninthItemButtonTxt.SetActive(false);
+                }
 
+                else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == eighthItemButton)
+                {
+                    seventhItemButtonTxt.SetActive(false);
+                    eighthItemButtonTxt.SetActive(true);
+                    ninthItemButtonTxt.SetActive(false);
+                }
+
+                else if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>() == ninthItemButton)
+                {
+                    seventhItemButtonTxt.SetActive(false);
+                    eighthItemButtonTxt.SetActive(false);
+                    ninthItemButtonTxt.SetActive(true);
+                }
+
+                else
+                {
+                    seventhItemButtonTxt.SetActive(false);
+                    eighthItemButtonTxt.SetActive(false);
+                    ninthItemButtonTxt.SetActive(false);
+                }
             }
         }
 
@@ -694,12 +804,71 @@ public class GameController : MonoBehaviour
     }
     private void SetEnemy()
     {
-        int chance = Random.Range(1, 4);
-        if (chance == 1)
-            firstEnemy.SetActive(true);
-        if (chance == 2)
-            secondEnemy.SetActive(true);
-        if (chance == 3)
-            thirdEnemy.SetActive(true);
+
+    }
+    public void SetItemGroup() 
+    {
+        if (pao > 0 || biscoito > 0 || energetico > 0)
+        {
+            firstItems.SetActive(true);
+            secondItems.SetActive(false);
+            thirdItems.SetActive(false);
+        }
+
+        else if (sanduiche > 0 || chocolate > 0 || melancia > 0)
+        {
+            firstItems.SetActive(false);
+            secondItems.SetActive(true);
+            thirdItems.SetActive(false);
+        }
+
+        else if (sobremesa > 0 || cafe > 0 || kit > 0)
+        {
+            firstItems.SetActive(false);
+            secondItems.SetActive(false);
+            thirdItems.SetActive(true);
+        }
+    }
+    public void UpdateItemGroup(string nome)
+    {
+        if (nome == "esquerda")
+        {
+            if (firstItems.activeSelf)
+                return;
+
+            else if (secondItems.activeSelf)
+            {
+                secondItems.SetActive(false);
+                firstItems.SetActive(true);
+                thirdItemButton.Select();
+            }
+
+            else if (thirdItems.activeSelf) 
+            {
+                thirdItems.SetActive(false);
+                secondItems.SetActive(true);
+                sixthItemButton.Select();
+            }
+        }
+
+        else if (nome == "direita") 
+        {
+            if (thirdItems.activeSelf)
+                return;
+
+            else if (secondItems.activeSelf)
+            {
+                secondItems.SetActive(false);
+                thirdItems.SetActive(true);
+                seventhItemButton.Select();
+            }
+
+            else if (firstItems.activeSelf)
+            {
+                firstItems.SetActive(false);
+                secondItems.SetActive(true);
+                fourthItemButton.Select();
+            }
+        }
     }
 }

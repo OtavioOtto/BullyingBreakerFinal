@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class CarteiraHandler : MonoBehaviour
 {
-    private readonly string[] itens = {"curativo","suco","fruta","energetico","barra"};
+    private readonly string[] itens = {"pao", "biscoito", "energetico", "cholocate", "sanduiche", "melancia" , "sobremesa", "cafe", "kit"};
     public string item;
     void Start()
     {
         int chance = Random.Range(0,101);
         if (chance <= 60)
         {
-            int position = Random.Range(0, 2);
+            int position = Random.Range(0, 3);
             item = itens[position];
             transform.GetChild(0).name = item;
         }
 
         else if (chance > 60 && chance < 90)
         {
-            int position = Random.Range(2, 4);
+            int position = Random.Range(3, 6);
             item = itens[position];
             transform.GetChild(0).name = item;
         }
 
         else {
-            item = itens[4];
+            int position = Random.Range(6, 9);
+            item = itens[position];
             transform.GetChild(0).name = item;
         }
     }

@@ -6,20 +6,24 @@ using UnityEngine;
 public class InventoryHandler : ScriptableObject
 {
     [Header("Quantidade Itens")]
-    public int curativoQuant;
-    public int sucoQuant;
-    public int frutaQuant;
-    public int brocheQuant;
-    public int oculosQuant;
-    public int jaquetaQuant;
-    public int cadernoQuant;
-    public int lapisQuant;
-    public int tesouraQuant;
+    public int sanduicheQuant;
+    public int biscoitoQuant;
+    public int energeticoQuant;
+    public int chocolateQuant;
+    public int paoQuant;
+    public int melanciaQuant;
+    public int sobremesaQuant;
+    public int cafeQuant;
+    public int kitQuant;
 
     [Header("Buffs")]
     public bool attackBuff = false;
     public bool healingBuff = false;
     public bool empathyBuff = false;
+
+    [Header("Buffs Temporarios")]
+    public float temporaryAttackBuff;
+    public float temporaryDefenseBuff;
 
     [Header("Itens Equipados Player 1")]
     public string currentAttackItem1;
@@ -42,111 +46,6 @@ public class InventoryHandler : ScriptableObject
     [Header("Inimigos Recrutados")]
     public RecruitedEnemiesHadler enemies;
     
-    public void ChangeItem(string newItem, string qualPlayer) {
-        string[] itensDano = { "caderno", "lapis", "tesoura" };
-        string[] itensDefesa = { "broche", "oculos", "jaqueta" };
-        if (qualPlayer == "player1")
-        {
-            for (int i = 0; i < itensDano.Length; i++)
-            {
-                Debug.Log(newItem);
-                if (newItem == itensDano[i])
-                {
-                    if (currentAttackItem1 != "")
-                    {
-                        if (currentAttackItem1 == "caderno")
-                            cadernoQuant++;
-                        else if (currentAttackItem1 == "lapis")
-                            lapisQuant++;
-                        else if (currentAttackItem1 == "tesoura")
-                            tesouraQuant++;
-                    }
-                    if (newItem == "caderno")
-                        cadernoQuant--;
-                    else if (newItem == "lapis")
-                        lapisQuant--;
-                    else if (newItem == "tesoura")
-                        tesouraQuant--;
-                    currentAttackItem1 = newItem;
-                }
-            }
-            for (int i = 0; i < itensDefesa.Length; i++)
-            {
-                if (newItem == itensDefesa[i])
-                {
-                    if (currentDefenseItem1 != "")
-                    {
-                        if (currentDefenseItem1 == "broche")
-                        {
-                            brocheQuant++;
-                            Debug.Log("certo");
-                        }
-                        else if (currentDefenseItem1 == "oculos")
-                            oculosQuant++;
-                        else if (currentDefenseItem1 == "jaqueta")
-                            jaquetaQuant++;
-                    }
-                    if (newItem == "broche")
-                        brocheQuant--;
-                    else if (newItem == "oculos")
-                    {
-                        Debug.Log("certo tmb");
-                        oculosQuant--;
-                    }
-                    else if (newItem == "jaqueta")
-                        jaquetaQuant--;
-                    currentDefenseItem1 = newItem;
-                }
-            }
-        }
-        else if (qualPlayer == "player2")
-        {
-            for (int i = 0; i < itensDano.Length; i++)
-            {
-                if (newItem == itensDano[i])
-                {
-                    if (currentAttackItem2 != "")
-                    {
-                        if (currentAttackItem2 == "caderno")
-                            cadernoQuant++;
-                        else if (currentAttackItem2 == "lapis")
-                            lapisQuant++;
-                        else if (currentAttackItem2 == "tesoura")
-                            tesouraQuant++;
-                    }
-                    if (newItem == "caderno")
-                        cadernoQuant--;
-                    else if (newItem == "lapis")
-                        lapisQuant--;
-                    else if (newItem == "tesoura")
-                        tesouraQuant--;
-                    currentAttackItem2 = newItem;
-                }
-            }
-            for (int i = 0; i < itensDefesa.Length; i++)
-            {
-                if (newItem == itensDefesa[i])
-                {
-                    if (currentDefenseItem2 != "")
-                    {
-                        if (currentDefenseItem2 == "broche")
-                            brocheQuant++;
-                        else if (currentDefenseItem2 == "oculos")
-                            oculosQuant++;
-                        else if (currentDefenseItem2 == "jaqueta")
-                            jaquetaQuant++;
-                    }
-                    if (newItem == "broche")
-                        brocheQuant--;
-                    else if (newItem == "oculos")
-                        oculosQuant--;
-                    else if (newItem == "jaqueta")
-                        jaquetaQuant--;
-                    currentDefenseItem2 = newItem;
-                }
-            }
-        }
-    }
     public float ReturnDamageValue(string qualPlayer) {
         if (qualPlayer == "player1")
         {
@@ -203,68 +102,96 @@ public class InventoryHandler : ScriptableObject
         return 0f;
     }
     public void GotItem(string name) {
-        if (name == "curativo")
-            curativoQuant++;
+        if (name == "sanduiche")
+            sanduicheQuant++;
 
-        else if (name == "suco")
-            sucoQuant++;
+        else if (name == "biscoito")
+            biscoitoQuant++;
 
-        else if (name == "fruta")
-            frutaQuant++;
+        else if (name == "energetico")
+            energeticoQuant++;
 
-        else if (name == "caderno")
-            cadernoQuant++;
+        else if (name == "chocolate")
+            chocolateQuant++;
 
-        else if (name == "lapis")
-            lapisQuant++;
+        else if (name == "pao")
+            paoQuant++;
 
-        else if (name == "tesoura")
-            tesouraQuant++;
+        else if (name == "melancia")
+            melanciaQuant++;
 
-        else if (name == "broche")
-            brocheQuant++;
+        else if (name == "sobremesa")
+            sobremesaQuant++;
 
-        else if (name == "oculos")
-            oculosQuant++;
+        else if (name == "cafe")
+            cafeQuant++;
 
-        else if (name == "jaqueta")
-            jaquetaQuant++;
+        else if (name == "kit")
+            kitQuant++;
     }
     public void HealPlayer(string item) {
-        if (item == "curativo") {
-            curativoQuant--;
-            hp += 0.1f;
-        }
-        else if (item == "suco")
+        if (item == "pao")
         {
-            sucoQuant--;
-            hp += 0.15f;
+            hp += .10f;
+            paoQuant--;
         }
-        else if (item == "fruta")
-        {
-            frutaQuant--;
-            hp += 0.2f;
 
+        else if (item == "biscoito") 
+        {
+            hp += .25f;
+            biscoitoQuant--;
+        }
+
+        else if (item == "energetico")
+        {
+            hp += .15f;
+            energeticoQuant--;
+        }
+
+        else if (item == "chocolate")
+        {
+            hp += .30f;
+            chocolateQuant--;
+            temporaryAttackBuff = 1.3f;
+        }
+
+        else if (item == "sanduiche")
+        {
+            hp += .40f;
+            temporaryDefenseBuff = 1.5f;
+            sanduicheQuant--;
+        }
+
+        else if (item == "melancia")
+        {
+            hp += .35f;
+            melanciaQuant--;
+            temporaryDefenseBuff = 1.8f;
+        }
+
+        else if (item == "sobremesa")
+        {
+            hp += .5f;
+            sobremesaQuant--;
+            temporaryDefenseBuff = 2f;
+        }
+
+        else if (item == "cafe")
+        {
+            hp += .45f;
+            sobremesaQuant--;
+            temporaryAttackBuff = 1.7f;
+        }
+
+        else if (item == "kit")
+        {
+            hp += 1;
+            kitQuant--;
         }
 
         if (hp > 1)
             hp = 1;
     }
-    /*public void GotBuff()
-    {
-        if (enemies.normalBullies)
-        {
-            attackBuff = true;
-        }
-        else if (enemies.boss1)
-        {
-            empathyBuff = true;
-        }
-        else if (enemies.boss2) 
-        {
-            healingBuff = true;
-        }
-    }*/
     public void ChangeBuffs(string newBuff, string qualPlayer)
     {
         if (qualPlayer == "player1")
@@ -310,24 +237,24 @@ public class InventoryHandler : ScriptableObject
     }
     public void ResetValues() 
     {
-        curativoQuant = 0;
-        sucoQuant = 0;
-        frutaQuant = 0;
-        brocheQuant = 0;
-        oculosQuant = 0;
-        jaquetaQuant = 0;
-        cadernoQuant = 0;
-        lapisQuant = 0;
-        tesouraQuant = 0;
+        sanduicheQuant = 0;
+        biscoitoQuant = 0;
+        energeticoQuant = 0;
+        chocolateQuant = 0;
+        paoQuant = 0;
+        melanciaQuant = 0;
+        sobremesaQuant = 0;
+        cafeQuant = 0;
+        kitQuant = 0;
         attackBuff = false;
         healingBuff = false;
         empathyBuff = false;
         hp = 1;
-        currentAttackItem1 = "";
-        currentDefenseItem1 = "";
-        currentEquippedBuff1 = "";
-        currentAttackItem2 = "";
-        currentDefenseItem2 = "";
-        currentEquippedBuff2 = "";
+    }
+    public void ResetTemporaryBuffs() {
+
+        temporaryAttackBuff = 0;
+        temporaryDefenseBuff = 0;
+
     }
 }
