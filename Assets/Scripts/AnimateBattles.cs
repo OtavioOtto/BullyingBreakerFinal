@@ -31,9 +31,9 @@ public class AnimateBattles : MonoBehaviour
 
     public void SetAnimations(string action)
     {
-        if (enemy1.activeSelf) 
+        if (enemy1.activeSelf)
         {
-            if (action == "attack" && gameController.currentTurnIndex == 0) 
+            if (action == "attack" && gameController.currentTurnIndex == 0)
             {
                 animatorEnemy1.SetBool("jimmyAttack", true);
             }
@@ -43,7 +43,7 @@ public class AnimateBattles : MonoBehaviour
                 animatorEnemy1.SetBool("vanessaAttack", true);
             }
 
-            else if(action == "strongerAttack" && gameController.currentTurnIndex == 0)
+            else if (action == "strongerAttack" && gameController.currentTurnIndex == 0)
             {
                 animatorEnemy1.SetBool("jimmyStrongerAttack", true);
             }

@@ -20,4 +20,4 @@ MonoBehaviour:
   boss2: 0
   boss3: 0
   won: 0
-  lastBattle: 
+  lastBattle: boss1

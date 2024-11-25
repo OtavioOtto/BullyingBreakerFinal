@@ -45,14 +45,15 @@ public class DecideBattle : MonoBehaviour
             case "tres":
                 enemiesBattle.SetActive(true);
                 enemy3.SetActive(true);
-                player1turn.transform.position = new Vector3 (player1turn.transform.position.x - 60,player1turn.transform.position.y,player1turn.transform.position.z);
-                enemyTurn.transform.position = new Vector3(enemyTurn.transform.position.x - 200, enemyTurn.transform.position.y, enemyTurn.transform.position.z);
-                enemyAura.transform.position = new Vector3(enemyAura.transform.position.x - 200, enemyAura.transform.position.y, enemyAura.transform.position.z);
+                
                 break;
 
             case "quatro":
                 enemiesBattle.SetActive(true);
                 enemy4.SetActive(true);
+                player1turn.transform.position = new Vector3(player1turn.transform.position.x - 60, player1turn.transform.position.y, player1turn.transform.position.z);
+                enemyTurn.transform.position = new Vector3(enemyTurn.transform.position.x - 200, enemyTurn.transform.position.y, enemyTurn.transform.position.z);
+                enemyAura.transform.position = new Vector3(enemyAura.transform.position.x - 200, enemyAura.transform.position.y, enemyAura.transform.position.z);
                 break;
 
             case "boss1":

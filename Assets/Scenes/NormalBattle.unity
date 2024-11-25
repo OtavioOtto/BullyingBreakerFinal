@@ -156,7 +156,7 @@ RectTransform:
   m_Father: {fileID: 490642771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1543,7 +1543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &210004123
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3003,7 +3003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &473316991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,12 +3226,12 @@ MonoBehaviour:
   enemy2: {fileID: 1217233634}
   enemy3: {fileID: 1405308351}
   enemy4: {fileID: 1041443095}
-  animatorBoss1: {fileID: 0}
-  animatorBoss2: {fileID: 0}
-  animatorBoss3: {fileID: 0}
-  boss1: {fileID: 0}
-  boss2: {fileID: 0}
-  boss3: {fileID: 0}
+  animatorBoss1: {fileID: 1577485408}
+  animatorBoss2: {fileID: 1959380537}
+  animatorBoss3: {fileID: 1419227847}
+  boss1: {fileID: 1577485403}
+  boss2: {fileID: 1959380532}
+  boss3: {fileID: 1419227842}
   gameController: {fileID: 473316995}
 --- !u!1 &479042640
 GameObject:
@@ -3607,7 +3607,7 @@ RectTransform:
   m_Father: {fileID: 2017560100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5304,7 +5304,7 @@ RectTransform:
   m_Father: {fileID: 1882234559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11867,20 +11867,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3444dd44f6a7341bee976836014d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorEnemy1: {fileID: 1577485408}
-  animatorEnemy2: {fileID: 1959380537}
-  animatorEnemy3: {fileID: 1419227847}
-  animatorEnemy4: {fileID: 0}
-  enemy1: {fileID: 1577485403}
-  enemy2: {fileID: 1959380532}
-  enemy3: {fileID: 1419227842}
-  enemy4: {fileID: 0}
-  animatorBoss1: {fileID: 0}
-  animatorBoss2: {fileID: 0}
-  animatorBoss3: {fileID: 0}
-  boss1: {fileID: 0}
-  boss2: {fileID: 0}
-  boss3: {fileID: 0}
+  animatorEnemy1: {fileID: 210004124}
+  animatorEnemy2: {fileID: 1217233637}
+  animatorEnemy3: {fileID: 1405308354}
+  animatorEnemy4: {fileID: 1041443098}
+  enemy1: {fileID: 210004122}
+  enemy2: {fileID: 1217233634}
+  enemy3: {fileID: 1405308351}
+  enemy4: {fileID: 1041443095}
+  animatorBoss1: {fileID: 1577485408}
+  animatorBoss2: {fileID: 1959380537}
+  animatorBoss3: {fileID: 1419227847}
+  boss1: {fileID: 1577485403}
+  boss2: {fileID: 1959380532}
+  boss3: {fileID: 1419227842}
   gameController: {fileID: 1308471414}
 --- !u!114 &1308471414
 MonoBehaviour:
@@ -11896,7 +11896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 1178733851}
   player2: {fileID: 1460668689}
-  enemy: {fileID: 0}
+  enemy: {fileID: 1983193940}
   playerHealth: {fileID: 230507589}
   enemyHealth: {fileID: 1052967527}
   enemyAura: {fileID: 721160668}
@@ -11978,8 +11978,8 @@ MonoBehaviour:
   cafe: 0
   kit: 0
   currentTurnIndex: 0
-  attackBuff: 0
-  empathyBuff: 0
+  attackBuff: 1
+  empathyBuff: 1
   ganhou: 0
   inventory: {fileID: 11400000, guid: 6497de0b1a21c5a479e9e7b471e58049, type: 2}
   enemies: {fileID: 11400000, guid: 81a5099b1be7e4c4aa0f9c4da8240b2f, type: 2}
@@ -13334,8 +13334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy1: {fileID: 210004122}
   enemy2: {fileID: 1217233634}
-  enemy3: {fileID: 1405308351}
-  enemy4: {fileID: 1041443095}
+  enemy3: {fileID: 1041443095}
+  enemy4: {fileID: 1405308351}
   boss1: {fileID: 1577485403}
   boss2: {fileID: 1959380532}
   boss3: {fileID: 1419227842}
